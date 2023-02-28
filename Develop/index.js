@@ -1,60 +1,5 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateReadme = ({
-  title,
-  description,
-  installation,
-  usage,
-  contributing,
-  tests,
-  licenseType,
-  userName,
-  emailAddress,
-}) =>
-
-  `# ${title}
-
-## Project Description:
-
-${description}
-
-## Table of Contents:
-* [Project Description](#project-description)
-* [Installation](#installation)
-* [Usage Information](#usage-information)
-* [Contributor Guidelines](#contributor-guidelines)
-* [Testing Information](#testing-information)
-* [License Type](#license-type)
-* [Questions](#questions)
-
-## Installation:
-
-${installation}
-
-## Usage Information: 
-
-${usage}
-
-## Contributor Guidelines:
-
-${contributing}
-
-## Testing Information: 
-
-${tests}
-
-## License Type:
-${licenseType}
-
-## Questions:
-Contact: ${userName} 
-
-GitHub: https://github.com/${userName}
-
-If you have further questions please reach me at: ${emailAddress}
-`;
-
 const theQuestions = [
   {
     type: "input",
@@ -109,10 +54,63 @@ const theQuestions = [
   },
 ];
 
+const generateReadme = ({
+  title,
+  description,
+  installation,
+  usage,
+  contributing,
+  tests,
+  licenseType,
+  userName,
+  emailAddress,
+}) =>
+  `# ${title}
+
+## Project Description:
+
+${description}
+
+## Table of Contents:
+* [Project Description](#project-description)
+* [Installation](#installation)
+* [Usage Information](#usage-information)
+* [Contributor Guidelines](#contributor-guidelines)
+* [Testing Information](#testing-information)
+* [License Type](#license-type)
+* [Questions](#questions)
+
+## Installation:
+
+${installation}
+
+## Usage Information: 
+
+${usage}
+
+## Contributor Guidelines:
+
+${contributing}
+
+## Testing Information: 
+
+${tests}
+
+## License Type:
+${licenseType}
+
+## Questions:
+Contact: ${userName} 
+
+GitHub: https://github.com/${userName}
+
+If you have further questions please reach me at: ${emailAddress}
+`;
+
 function init() {
   inquirer.prompt(theQuestions).then((data) => {
     const readMeContent = generateReadme(data);
-    fs.writeFile("ReadMe.md", readMeContent, (err) =>
+    fs.writeFile("README.md", readMeContent, (err) =>
       err ? console.log(err) : console.log(data)
     );
   });

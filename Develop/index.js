@@ -1,5 +1,7 @@
+//installed inquirer 
 const inquirer = require("inquirer");
 const fs = require("fs");
+//prompt questions
 const theQuestions = [
   {
     type: "input",
@@ -53,7 +55,7 @@ const theQuestions = [
     message: "What email can people reach you at?",
   },
 ];
-
+//generate the README function
 const generateReadme = ({
   title,
   description,
@@ -110,10 +112,11 @@ If you have further questions please reach me at: ${emailAddress}
 function init() {
   inquirer.prompt(theQuestions).then((data) => {
     const readMeContent = generateReadme(data);
+    //write the README file
     fs.writeFile("README.md", readMeContent, (err) =>
       err ? console.log(err) : console.log(data)
     );
   });
 }
-
+// call init function
 init();
